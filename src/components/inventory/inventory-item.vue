@@ -8,7 +8,7 @@
                 class="img-container__image"
                 draggable="true"
                 @dragstart="startDrag($event)"
-                @click="openModal(cell)"
+
             >
         </div>
         <p class="item__count">{{ cell.count }}</p>
@@ -33,9 +33,7 @@ const props = defineProps({
     }
 })
 
-const openModal = (cell: ICell) => {
-    modalStore.openModal(cell)
-}
+
 
 const startDrag = (event: DragEvent) => {
     console.log(props.cell);

@@ -1,7 +1,7 @@
 import { defineStore } from 'pinia'
 import type ICell from '@/interfaces/ICell.ts'
 
-export const useItemStore = defineStore('modal', {
+export const useItemStore = defineStore('item', {
     state: () => ({
         isModalOpen: false,
         selectedCell: null as ICell | null

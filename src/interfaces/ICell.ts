@@ -1,5 +1,5 @@
 export default interface ICell {
     id: number,
-    item: string,
+    item: string | null,
     count: number
 }
