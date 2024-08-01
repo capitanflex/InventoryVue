@@ -35,6 +35,7 @@ import {getImgSrc} from "@/scripts/helpers.ts";
 import Skeleton from "@/components/skeleton.vue";
 import {useItemStore} from "@/stores/itemStore.ts";
 import {useInventoryStore} from "@/stores/inventoryStore.ts";
+import ICell from "@/interfaces/ICell.ts";
 
 
 const itemStore = useItemStore()
@@ -53,8 +54,12 @@ const closeModal = () => {
 
 const deleteItems = () => {
     const count = parseInt(countToDelete.value);
+    if (!cell.value) {
+        highlightInput()
+        return
+    }
     if (count <= cell.value.count && count !== 0) {
-        inventoryStore.updateCellCount(cell.value, count);
+        inventoryStore.updateCellCount(<ICell>cell.value, count);
     }
     else highlightInput();
 
@@ -67,9 +72,11 @@ const highlightInput = () => {
     }, 2000)
 }
 
-const filterInput = (event) => {
-    const value = event.target.value
-    countToDelete.value = value.replace(/\D/g, '')
+const filterInput = (event: Event) => {
+    const target = event.target as HTMLInputElement | null;
+    if (!target) return;
+    const value = target.value;
+    countToDelete.value = value.replace(/\D/g, '');
 }
 
 watch(

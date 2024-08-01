@@ -2,9 +2,9 @@
     <div class="cell__item item">
         <div class="item__img-container img-container">
             <img
-                :src="getImgSrc(cell.item)"
-                :alt="cell.item"
-                :title="cell.item"
+                :src="getImgSrc(<string>cell.item)"
+                :alt="<string>cell.item"
+                :title="<string>cell.item"
                 class="img-container__image"
                 draggable="true"
                 @dragstart="startDrag($event)"
@@ -19,11 +19,6 @@
 import {defineProps, PropType} from 'vue'
 import ICell from "@/interfaces/ICell.ts";
 import {getImgSrc} from "@/scripts/helpers.ts";
-import {useItemStore} from "@/stores/itemStore.ts";
-
-
-const modalStore = useItemStore()
-const selectedCell = modalStore.selectedCell
 
 
 const props = defineProps({
@@ -36,10 +31,11 @@ const props = defineProps({
 
 
 const startDrag = (event: DragEvent) => {
-    console.log(props.cell);
-    event.dataTransfer.dropEffect = 'move';
-    event.dataTransfer.effectAllowed = 'move';
-    event.dataTransfer.setData('cellId', props.cell.id.toString());
+    if (event.dataTransfer) {
+        event.dataTransfer.dropEffect = 'move';
+        event.dataTransfer.effectAllowed = 'move';
+        event.dataTransfer.setData('cellId', props.cell.id.toString());
+    }
 }
 </script>
 

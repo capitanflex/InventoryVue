@@ -14,11 +14,13 @@
     "vuedraggable": "^4.1.0"
   },
   "devDependencies": {
+    "@types/node": "^22.0.2",
     "@types/vuedraggable": "^2.24.0",
     "@vitejs/plugin-vue": "^5.0.5",
     "sass": "^1.77.8",
     "typescript": "^5.2.2",
     "vite": "^5.3.4",
+    "vite-plugin-checker": "^0.7.2",
     "vue-tsc": "^2.0.24"
   }
 }

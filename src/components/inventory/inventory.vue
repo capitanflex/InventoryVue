@@ -27,6 +27,7 @@ const inventoryStore = useInventoryStore()
 const itemStore = useItemStore()
 
 const onDrop = (event: DragEvent, cell: ICell) => {
+    if (!event.dataTransfer) return;
     const oldCellId = event.dataTransfer.getData('cellId');
 
     inventoryStore.updateCell(Number(oldCellId), cell);

@@ -42,8 +42,8 @@ export const useInventoryStore = defineStore('inventory', () => {
             const temp = [newCell.item, newCell.count];
             newCell.item = oldCell.item;
             newCell.count = oldCell.count;
-            oldCell.item = temp[0];
-            oldCell.count = temp[1];
+            oldCell.item = <string>temp[0];
+            oldCell.count = <number>temp[1];
         }
         saveStateToLocalStorage();
     }
